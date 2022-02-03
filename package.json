@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "API REST para projeto AdventureWorks",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@Guilherme-Ciano",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "prisma": "^3.8.1"
+  }
+}

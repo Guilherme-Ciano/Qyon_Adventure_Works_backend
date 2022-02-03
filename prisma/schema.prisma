@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Competidores {
+  ID                    Int                @id @default(autoincrement())
+  Nome                  String             @db.VarChar(150)
+  Sexo                  String             @db.VarChar(1)
+  TemperaturaMediaCorpo Float
+  Peso                  Float
+  Altura                Float
+  HistoricoCorrida      HistoricoCorrida[]
+}
+
+model HistoricoCorrida {
+  ID             Int          @id @default(autoincrement())
+  Competidor     Competidores @relation(fields: [CompetidorID], references: [ID])
+  CompetidorID   Int
+  PistaCorrida   PistaCorrida @relation(fields: [PistaCorridaID], references: [ID])
+  PistaCorridaID Int
+  DataCorrida    String       @db.VarChar(50)
+  TempoGasto     Float
+}
+
+model PistaCorrida {
+  ID               Int                @id @default(autoincrement())
+  Descricao        String             @db.VarChar(50)
+  Nome             String             @db.VarChar(50)
+  HistoricoCorrida HistoricoCorrida[]
+}
